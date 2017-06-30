@@ -2,7 +2,14 @@
 
 [![Build Status](https://secure.travis-ci.org/nodejs/llnode.png)](http://travis-ci.org/nodejs/llnode)
 
-Node.js v4.x-v6.x C++ plugin for [LLDB](http://lldb.llvm.org) - a next generation, high-performance debugger.
+Node.js v4.x-v8.x C++ plugin for [LLDB](http://lldb.llvm.org) - a next generation, high-performance debugger.
+
+### Quick start
+
+```bash
+npm install -g llnode
+llnode node -c core
+```
 
 ## Demo
 
@@ -10,16 +17,16 @@ https://asciinema.org/a/29589
 
 ## Install Instructions
 
-### Install with npm
+### Global install with npm
 
 ```bash
-npm install llnode
+npm install -g llnode
 ```
 
 To use a particular build of lldb, use the `--lldb_exe` option:
 
 ```bash
-npm install --lldb_exe=`which lldb-3.9` llnode
+npm install --lldb_exe=`which lldb-3.9` -g llnode
 ```
 
 ### Install with Homebrew (OS X)
@@ -75,11 +82,24 @@ make -C out/ -j9
 sudo make install-linux
 ```
 
-## Usage
+## Installation
 
-The llnode plugin can be loaded into LLDB using the `plugin load` command.
-Alternatively it can be installed in the LLDB system plugin directory, in
-which case LLDB will load the plugin automatically on start-up.
+The simplest installation method is:
+```bash
+npm install -g llnode
+```
+
+If you do a global install (npm install -g llnode) you can use the llnode
+shortcut script. This starts lldb and automatically issues the plugin load command.
+All parameters to the llnode script are passed directly to lldb. If you do not do a local install the shortcut will be in node_modules/.bin/llnode
+
+The llnode plugin can also be loaded into LLDB using the
+`plugin load` command within lldb. Alternatively it can be installed in the
+LLDB system plugin directory, in which case LLDB will load the plugin
+automatically on start-up.
+
+It does not matter whether the `plugin load` command is issued before or after
+loading a core dump.
 
 ### OS X
 
@@ -106,12 +126,14 @@ To install the plugin in the LLDB system plugin directory, use the
 npm copy `node_modules/llnode/llnode.so` to
 `/usr/lib/lldb/plugins`.
 
+# Usage
+
 To use llnode with a core dump the core dump needs to be loaded into lldb
 along with the exact executable that created the core dump. The executable
-contains information that lldb and llnode need to make sense of the data in
-the core dump.
+contains information that lldb and the llnode plugin need to make sense of
+the data in the core dump.
 
-To load the core dump when starting lldb use:
+To load a core dump when starting llnode use:
 ```
 lldb /path/to/bin/node -c /path/to/core
 ```
@@ -120,8 +142,19 @@ or to load the core dump after starting lldb:
 (lldb) target create /path/to/bin/node -c /path/to/core
 ```
 
-It does not matter whether the `plugin load` command is issued before or after
-loading a core dump.
+To use llnode against a live process:
+```
+llnode -- /path/to/bin/node script.js
+(llnode) run
+```
+This is ideal for debugging an npm package with native code.
+To debug a Node.js crash on uncaught exception:
+```
+llnode -- /path/to/bin/node --abort_on_uncaught_exception script.js
+(llnode) run
+```
+lldb will stop your process when it crashes. To see where it stopped use the
+v8 bt command. See the commands information below.
 
 ### Commands
 
