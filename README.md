@@ -2,14 +2,22 @@
 
 [![Build Status](https://secure.travis-ci.org/nodejs/llnode.png)](http://travis-ci.org/nodejs/llnode)
 
-Node.js v4.x-v8.x C++ plugin for [LLDB](http://lldb.llvm.org) - a next generation, high-performance debugger.
+Node.js v4.x-v8.x C++ plugin for the [LLDB](http://lldb.llvm.org) debugger.
+
+The llnode plugin adds the ability to inspect JavaScript stack frames, objects,
+source code and more to the standard C/C++ debugging facilities when working
+with Node.js processes or core dumps in LLDB.
 
 ### Quick start
+
+Start an lldb session with the llnode plugin pre-loaded:
 
 ```bash
 npm install -g llnode
 llnode node -c core
 ```
+
+See [Usage](#Usage)
 
 ## Demo
 
