@@ -173,7 +173,7 @@ llnode -- /path/to/bin/node --abort_on_uncaught_exception script.js
 (llnode) run
 ```
 lldb will stop your process when it crashes. To see where it stopped use the
-v8 bt command. See the commands information below.
+v8 bt command. See the [Commands](#commands) section below for more commands.
 
 ### Commands
 
@@ -204,6 +204,7 @@ The following subcommands are supported:
                           * -v, --value expr     - all properties that refer to the specified JavaScript object (default)
                           * -n, --name  name     - all properties with the specified name
                           * -s, --string string  - all properties that refer to the specified JavaScript string value
+                          * --array-length num   - print maximum of `num` elements in array
 
       inspect         -- Print detailed description and contents of the JavaScript value.
 
