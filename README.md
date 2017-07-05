@@ -17,7 +17,7 @@ npm install -g llnode
 llnode node -c core
 ```
 
-See [Usage](#Usage)
+See [Usage](#usage)
 
 ## Demo
 
