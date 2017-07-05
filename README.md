@@ -17,7 +17,7 @@ npm install -g llnode
 llnode node -c core
 ```
 
-See [Usage](#usage)
+To get started with the llndoe commands see the [Usage](#usage) section.
 
 ## Demo
 
@@ -90,24 +90,28 @@ make -C out/ -j9
 sudo make install-linux
 ```
 
-## Installation
+## Loading the lldb plugin library.
 
 The simplest installation method is:
 ```bash
 npm install -g llnode
 ```
 
-If you do a global install (npm install -g llnode) you can use the llnode
-shortcut script. This starts lldb and automatically issues the plugin load command.
-All parameters to the llnode script are passed directly to lldb. If you do not do a local install the shortcut will be in node_modules/.bin/llnode
+If you do a global install (npm install -g llnode) you can use the `llnode`
+shortcut script. This starts `lldb` and automatically issues the `plugin load` command.
+All parameters to the llnode script are passed directly to lldb. If you do not do a
+local install the shortcut will be in `node_modules/.bin/llnode`
 
-The llnode plugin can also be loaded into LLDB using the
-`plugin load` command within lldb. Alternatively it can be installed in the
-LLDB system plugin directory, in which case LLDB will load the plugin
-automatically on start-up.
+If you run either `make install-linux` or `make install-osx` the plugin will installed
+in the LLDB system plugin directory, in which case LLDB will load the plugin
+automatically on start-up. Using this may require additional permissions to be able to
+copy the plugin libary to the system plugin directory.
+
+The llnode plugin can also be manually loaded into LLDB using the
+`plugin load` command within lldb.
 
 It does not matter whether the `plugin load` command is issued before or after
-loading a core dump.
+loading a core dump or attaching to a process.
 
 ### OS X
 
@@ -143,11 +147,11 @@ the data in the core dump.
 
 To load a core dump when starting llnode use:
 ```
-lldb /path/to/bin/node -c /path/to/core
+llnode /path/to/bin/node -c /path/to/core
 ```
 or to load the core dump after starting lldb:
 ```
-(lldb) target create /path/to/bin/node -c /path/to/core
+(llnode) target create /path/to/bin/node -c /path/to/core
 ```
 
 To use llnode against a live process:
