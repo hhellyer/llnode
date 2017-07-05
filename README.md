@@ -26,6 +26,11 @@ https://asciinema.org/a/29589
 
 ## Install Instructions
 
+To use llnode you need to have the LLDB debugger installed.
+
+- On OS X lldb is installed as part of Xcode. You will need Xcode both to build and run llnode.
+- On Linux install the lldb package using your distributions package manager.
+
 ### Global install with npm
 
 ```bash
