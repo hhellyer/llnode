@@ -17,7 +17,8 @@ npm install -g llnode
 llnode node -c core
 ```
 
-To get started with the llndoe commands see the [Usage](#usage) section.
+- For more details on starting llnode see the [Usage](#usage) section.
+- To get started with the llnode commands see the [Commands](#commands) section.
 
 ## Demo
 
@@ -92,9 +93,10 @@ sudo make install-linux
 
 ## Loading the lldb plugin library.
 
-The simplest installation method is:
+The simplest method is:
 ```bash
 npm install -g llnode
+llnode
 ```
 
 If you do a global install (npm install -g llnode) you can use the `llnode`
